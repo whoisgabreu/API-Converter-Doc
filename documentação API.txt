@@ -1,0 +1,51 @@
+Documentação API - Conversor de Documentos
+ 
+URL BASE: api.v4lisboatech.com.br
+ 
+Para realizar solicitações na API é necessário API_KEY
+ 
+API_KEY: ccf9d74a30dc58035c50d1d0cb19dd20
+ 
+header = {
+            X-API-KEY: ccf9d74a30dc58035c50d1d0cb19dd20
+        }
+ 
+Endpoints:
+ 
+---------------------------------------------------------------------------------------
+ 
+/convert/docx
+ 
+Método POST
+ 
+body = {
+    "file_base64": "<string_base64_do_DOCX>"
+}
+ 
+O que faz?
+ 
+- Converte um DOCX em PDF
+ 
+Retorna:
+ 
+- O arquivo PDF binário (application/pdf)
+ 
+---------------------------------------------------------------------------------------
+
+/convert/html
+
+Método POST
+
+body = {
+    "html_content": "<conteudo_html_string>"
+}
+
+O que faz?
+
+- Converte conteúdo HTML em PDF
+
+Retorna:
+
+- O arquivo PDF binário (application/pdf)
+
+---------------------------------------------------------------------------------------

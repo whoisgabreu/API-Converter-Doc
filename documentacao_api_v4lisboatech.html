@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentação da API — v4lisboatech</title>
+<style>
+  :root {
+    --bg: #0b1020;
+    --panel: #111836;
+    --panel-2: #0e1530;
+    --text: #e7ecff;
+    --muted: #b7c0e5;
+    --accent: #7aa2ff;
+    --accent-2: #4fd1c5;
+    --border: #1b244a;
+    --code: #0a122b;
+    --kbd: #0d1633;
+    --warning: #ffb020;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    color: var(--text);
+    background: radial-gradient(1200px 600px at 20% -10%, #14204b 0%, transparent 60%),
+                radial-gradient(900px 500px at 120% 20%, #0c1a38 0%, transparent 60%),
+                var(--bg);
+  }
+  header.hero {
+    padding: 48px 20px 24px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(122,162,255,.06), rgba(122,162,255,0));
+  }
+  .hero h1 {
+    margin: 0 0 8px;
+    font-size: clamp(28px, 5vw, 40px);
+    letter-spacing: .3px;
+  }
+  .hero p {
+    margin: 0;
+    color: var(--muted);
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 20px 72px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 980px) {
+    .grid {
+      grid-template-columns: 280px 1fr;
+      gap: 24px;
+    }
+  }
+  nav.toc {
+    position: sticky;
+    top: 16px;
+    align-self: start;
+    background: linear-gradient(180deg, var(--panel), var(--panel-2));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+  }
+  nav.toc h3 {
+    margin: 0 0 8px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--muted);
+  }
+  nav.toc a {
+    display: block;
+    padding: 8px 10px;
+    margin: 4px 0;
+    text-decoration: none;
+    color: var(--text);
+    border-radius: 10px;
+  }
+  nav.toc a:hover { background: #0c1430; }
+  section.card {
+    background: linear-gradient(180deg, var(--panel), var(--panel-2));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  h2, h3 { scroll-margin-top: 80px; }
+  h2 { margin: 0 0 8px; font-size: 24px; }
+  h3 { margin: 20px 0 8px; font-size: 18px; color: var(--accent); }
+  .kdb, code, pre, .pill {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  pre {
+    background: var(--code);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px;
+    overflow: auto;
+  }
+  code.inline {
+    background: rgba(122,162,255,.12);
+    border: 1px solid var(--border);
+    padding: .12rem .4rem;
+    border-radius: 8px;
+    font-size: .95em;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 12px 0 0;
+  }
+  .pill {
+    background: rgba(79, 209, 197, .12);
+    border: 1px solid var(--border);
+    color: var(--accent-2);
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  .http-get { color: #54e1b8; }
+  .http-post { color: #ffd166; }
+  .endpoint {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    font-size: 18px; margin: 6px 0 10px;
+  }
+  .endpoint span.method {
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #0d1633;
+    border: 1px solid var(--border);
+  }
+  .hint {
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: #0f1838;
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .warning {
+    background: rgba(255, 176, 32, .12);
+    border-left: 4px solid var(--warning);
+    padding: 12px 14px;
+    border-radius: 8px;
+    color: #ffdca8;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  footer {
+    opacity: .8;
+    text-align: center;
+    padding: 24px 20px 56px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <h1>Documentação da API — Conversor</h1>
+    <p>Base URL: <code class="inline">https://api.v4lisboatech.com.br</code></p>
+    <div class="meta">
+      <span class="pill">Autenticação: <strong>API Key</strong></span>
+      <span class="pill">Formato: JSON / Binary PDF</span>
+      <span class="pill">TLS: HTTPS</span>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="grid">
+      <nav class="toc">
+        <h3>Sumário</h3>
+        <a href="#autenticacao">Autenticação</a>
+        <a href="#convert-docx">/convert/docx</a>
+        <a href="#convert-html">/convert/html</a>
+      </nav>
+
+      <main class="content">
+        <section id="autenticacao" class="card">
+          <h2>Autenticação</h2>
+          <p>Para realizar solicitações nesta API é necessário enviar a sua <strong>API Key</strong> no cabeçalho <code class="inline">X-API-KEY</code>.</p>
+
+<pre><code># API_KEY
+ccf9d74a30dc58035c50d1d0cb19dd20
+
+# Cabeçalho HTTP
+X-API-KEY: ccf9d74a30dc58035c50d1d0cb19dd20
+</code></pre>
+
+<div class="warning">
+⚠️ <strong>Importante:</strong> mantenha sua API Key em segredo.
+</div>
+        </section>
+
+        <section id="convert-docx" class="card">
+          <div class="endpoint">
+            <span class="method http-post">POST</span>
+            <code class="inline">/convert/docx</code>
+          </div>
+
+          <p><strong>O que faz?</strong> Converte um arquivo <code class="inline">.docx</code> em <code class="inline">.pdf</code>.</p>
+
+          <h3>Corpo (JSON)</h3>
+<pre><code>{
+  "file_base64": "&lt;string_base64_do_DOCX&gt;"
+}
+</code></pre>
+
+          <h3>Resposta</h3>
+<p>Retorna o arquivo PDF binário diretamente.</p>
+<pre><code>Content-Type: application/pdf
+Content-Disposition: inline; filename=arquivo.pdf
+</code></pre>
+        </section>
+
+        <section id="convert-html" class="card">
+          <div class="endpoint">
+            <span class="method http-post">POST</span>
+            <code class="inline">/convert/html</code>
+          </div>
+
+          <p><strong>O que faz?</strong> Converte conteúdo HTML em um arquivo <code class="inline">.pdf</code>.</p>
+
+          <h3>Corpo (JSON)</h3>
+<pre><code>{
+  "html_content": "&lt;conteudo_html_string&gt;"
+}
+</code></pre>
+
+          <h3>Resposta</h3>
+<p>Retorna o arquivo PDF binário diretamente.</p>
+<pre><code>Content-Type: application/pdf
+Content-Disposition: inline; filename=arquivo.pdf
+</code></pre>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 v4lisboatech — Dedicated Document Conversion API.
+  </footer>
+</body>
+</html>
