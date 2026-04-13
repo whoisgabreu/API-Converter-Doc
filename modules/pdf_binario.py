@@ -29,7 +29,7 @@ def convert_docx_base64_to_pdf(file_base64: str) -> bytes:
         raise ValueError(f"Base64 inválido: {e}")
 
     # Validação rápida de cabeçalho DOCX (arquivos ZIP começam com PK)
-    if not file_data.startswith(b'PK\x03\x04'):
+    if not file_data.startswith(b'PK'):
         logger.warning("Tentativa de conversão de arquivo que não parece ser um DOCX válido.")
         raise ValueError("O conteúdo fornecido não parece ser um documento DOCX válido.")
 
